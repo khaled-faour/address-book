@@ -1,8 +1,9 @@
 const { Router } = require('express');
-const { getContact, getContacts, updateContact, deleteContact } = require('../controller/contact');
+const { addContact, getContact, getContacts, updateContact, deleteContact } = require('../controller/contact');
 const router = Router();
 
 
+router.post('/', addContact)
 router.get('/', getContacts);
 router.get('/:id', getContact);
 router.put('/:id', updateContact);

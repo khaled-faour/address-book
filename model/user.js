@@ -7,8 +7,8 @@ const userSchema = new mongoose.Schema({
     password: {type: String},
     token: {type: String},
     contacts: [{
-        type: mongoose.Types.ObjectId,
-        ref: 'Contact'
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'contact'
     }]
 });
 
