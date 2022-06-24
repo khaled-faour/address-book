@@ -10,6 +10,10 @@ const contactSchema = new mongoose.Schema({
         longitude: {type: Number},
         latitude: {type: Number}
     },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    },
 });
 
 module.exports = mongoose.model("user", contactSchema);
