@@ -27,6 +27,15 @@ const addContact = async (req, res) =>{
 
 const getContacts = async (req, res) =>{
     try{
+        const contacts = await Contact.find();
+        return res.status(200).json({contacts});
+    }catch(err){
+        res.status(500).json({error: err})
+    }
+}
+
+const getContactsWithUser = async (req, res) =>{
+    try{
         const contacts = await Contact.find().populate('user');
         return res.status(200).json({contacts});
     }catch(err){
@@ -37,12 +46,23 @@ const getContacts = async (req, res) =>{
 const getContact = async (req, res) =>{
     try{
         const {id} = req.params;
-        const contact = await Contact.findById(id).populate('user');
+        const contact = await Contact.findById(id)
         return res.status(200).json({contact});
     }catch(err){
         res.status(500).json({error: err})
     }
 }
+
+const getContactWithUser = async (req, res) =>{
+    try{
+        const {id} = req.params;
+        const contact = await Contact.findById(id).populate('user');
+        return res.status(200).json({contact});
+    }catch(err){
+        res.status(500).json({error: err})
+    }
+} 
+
 const updateContact = async (req, res) => {
     try{
         const {id} = req.params
@@ -79,7 +99,9 @@ const deleteContact = async (req, res) =>{
 module.exports ={
     addContact,
     getContact,
+    getContactWithUser,
     getContacts,
+    getContactsWithUser,
     updateContact,
     deleteContact
 }
