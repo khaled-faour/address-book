@@ -26,8 +26,8 @@ const deleteContact = async (req, res) =>{
 }
 
 module.exports ={
-    getUser,
-    getUsers,
-    updateUser,
-    deleteUser
+    getContact,
+    getContacts,
+    updateContact,
+    deleteContact
 }
