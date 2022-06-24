@@ -6,7 +6,7 @@ const express = require("express");
 //Routes
 const authRouter = require('./routes/auth');
 const userRouter = require('./routes/user');
-const contactRouter = require('./routes/contact')
+const contactRouter = require('./routes/contact');
 const app = express();
 
 app.use(express.json());

@@ -12,4 +12,4 @@ const userSchema = new mongoose.Schema({
     }]
 });
 
-module.exports = mongoose.model("contact", userSchema);
+module.exports = mongoose.model("user", userSchema);
