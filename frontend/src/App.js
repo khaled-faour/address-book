@@ -5,10 +5,12 @@ import {
   Route,
   Navigate
 } from "react-router-dom";
-import useAuth from './utils/hooks/auth';
+import useAuth from './utils/hooks/useAuth';
 import Login from './pages/login';
 import Signup from './pages/signup';
 import './App.css';
+import Header from './components/header';
+import Home from './pages/home';
 
 function App() {
   const validToken = useAuth();
@@ -31,8 +33,9 @@ function App() {
   return (
     
       <BrowserRouter>
+        <Header/>
         <Routes>
-            <Route path='/' element={<h1>Home</h1>}/>
+            <Route path='/' element={<Home/>}/>
             <Route
                 path="*"
                 element={<Navigate to="/" replace />}

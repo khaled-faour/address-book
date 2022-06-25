@@ -80,3 +80,66 @@ body{
   align-items: center;
   gap: 10px;
 }
+
+.header{
+  height: 65px;
+  background-color: var(--primary);
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px -1px, rgba(0, 0, 0, 0.14) 0px 4px 5px 0px, rgba(0, 0, 0, 0.12) 0px 1px 10px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.header .title{
+  padding: 0;
+  margin: 0;
+
+}
+
+.contacts-container{
+  padding-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+
+.card{
+  width: 600px;
+  border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px -1px, rgba(0, 0, 0, 0.14) 0px 4px 5px 0px, rgba(0, 0, 0, 0.12) 0px 1px 10px 0px;
+  background-color: var(--secondary);
+  overflow-y: hidden;
+  padding: 10px 10px 0 10px;
+  
+}
+
+.card-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-header:hover{
+  cursor: pointer;
+}
+
+.card-content{
+  /* display: none; */
+  height: 0;
+  transition: 0.1s ease-in;
+}
+.card-expanded{
+  /* display: block !important; */
+  height: 300px;
+}
+
+
+@media only screen and (max-width: 600px) {
+  .card {
+    width: 90%;
+  }
+}
+

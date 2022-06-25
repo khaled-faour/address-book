@@ -6,10 +6,8 @@ function useAuth() {
 
     const verifyToken = async ()=>{
         const token = localStorage.getItem('user_token') || ""
-        console.log(token)
         await axios.post('/api/auth/verify', {token})
         .then(response=>{
-            console.log(response)
             if(response.status===200){
                 setValid(true)
             }else{
