@@ -38,6 +38,14 @@ body{
   filter: brightness(80%);
 }
 
+.btn:disabled{
+  cursor: default;
+  background-color: #bbb;
+}
+.btn:disabled:hover{
+  filter: brightness(100%);
+}
+
 .input-container{
   display: flex;
   flex-direction: column;

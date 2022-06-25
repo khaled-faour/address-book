@@ -26,7 +26,7 @@ function useContacts() {
     if(contacts === null){
         return "Fetching Contacts";
     }
-    return contacts
+    return {contacts, setContacts};
 }
 
 export default useContacts
