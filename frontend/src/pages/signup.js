@@ -14,6 +14,7 @@ function Signup() {
         await axios.post('/api/auth/register', {...credentials}).then(response=>{
             if(response.status === 201){
                 localStorage.setItem("user_token", response.data.token);
+                window.location.reload()
             }
         })
     }

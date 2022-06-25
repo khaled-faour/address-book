@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
 import Input from '../components/input'
 import Button from '../components/button'
 function Login() {
+    const navigate = useNavigate();
     const [credentials, setCredentials] = useState({email: null, password: null});
 
     const onChange = (e)=>{
@@ -14,6 +15,7 @@ function Login() {
         await axios.post('/api/auth/login', {...credentials}).then(response=>{
             if(response.status === 200){
                 localStorage.setItem("user_token", response.data.token);
+                window.location.reload()
             }
         })
     }
