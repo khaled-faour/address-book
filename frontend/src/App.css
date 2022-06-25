@@ -153,12 +153,37 @@ body{
 .map{
   padding: 10px 0;
 }
+.new-contact-btn{
+  width: 620px;
+  padding: 0 10px;
+}
 
+.add-contact{
+  display: none;
+  width: 620px;
+}
 
-
+.add-contact-show{
+  display: block;
+}
 @media only screen and (max-width: 600px) {
   .card {
     width: 90%;
   }
+  .new-contact-btn{
+    width: 90%;
+    padding: 0 10px;
+  }
+  .add-contact{
+    width: calc(90% + 20px);
+  }
+  .add-contact .card{
+    width: 100%;
+    box-sizing: border-box;
+
+  }
+  
 }
+
+
 
