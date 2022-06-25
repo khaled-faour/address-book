@@ -127,13 +127,12 @@ body{
 }
 
 .card-content{
-  /* display: none; */
   height: 0;
   transition: 0.1s ease-in;
 }
 .card-expanded{
-  /* display: block !important; */
-  height: 300px;
+  /* height: 150px; */
+  height: fit-content;
 }
 
 
