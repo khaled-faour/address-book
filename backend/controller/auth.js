@@ -68,7 +68,26 @@ const login = async (req, res) => {
     }
 }
 
+
+const verify = (req, res)=>{
+    const token = req.body.token;
+    console.log("token: ", token)
+
+   
+
+    try {
+        const valid = jwt.verify(token, process.env.TOKEN_KEY)
+        return res.json({valid})
+    } catch (err) {
+        return res.status(401).send("Unauthenticated!");
+    }
+
+}
+
+module.exports = verify;
+
 module.exports = {
     register,
-    login
+    login,
+    verify
 }
