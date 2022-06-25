@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import Button from '../components/button';
 import {BsChevronDown, BsChevronUp} from 'react-icons/bs';
 import { Map, Marker } from "pigeon-maps"
 
 
 function Card({info}) {
     const [expanded, setExpanded] = useState(false);
-    const position = [info.location.latitude, info.location.longitude]
+    const [position, setPosition] = useState([info?.location?.latitude ?? 0, info?.location?.longitude ?? 0])
 
     const toggleExpand = ()=>{
         setExpanded(!expanded)
@@ -24,9 +25,13 @@ function Card({info}) {
             <div><strong>Email: </strong> {info.email}</div>
             <div><strong>Relation: </strong> {info.relation}</div>
             <div className='map'>
-                <Map height={300} defaultCenter={position} defaultZoom={15}>
+                <Map height={300} defaultCenter={position} defaultZoom={16}>
                     <Marker width={50} anchor={position} />
                 </Map>
+            </div>
+            <div className='card-footer'>
+                <Button text='edit'/>
+                <Button text='delete'/>
             </div>
         </div>
     </div>
