@@ -60,7 +60,7 @@ body{
   text-transform: capitalize;
 }
 
-.input-container input{
+.input-container input, .input-container select{
   height: 48px;
   width: 100%;
   padding-left: 16px;
@@ -73,10 +73,14 @@ body{
   box-sizing: border-box;
 }
 
-.input-container input:focus, .input-container input:focus-visible{
+.input-container input:focus, .input-container input:focus-visible,
+.input-container select:focus, .input-container select:focus-visible{
   border: 1px solid white;
 }
 
+.input-container select option{
+  color: black
+}
 .login-container{
   width: 300px;
   position: absolute;
@@ -166,6 +170,13 @@ body{
 .add-contact-show{
   display: block;
 }
+
+.filter-container{
+  width: 620px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
 @media only screen and (max-width: 600px) {
   .card {
     width: 90%;
@@ -181,6 +192,9 @@ body{
     width: 100%;
     box-sizing: border-box;
 
+  }
+  .filter-container{
+    width: calc(90% + 20px);
   }
   
 }

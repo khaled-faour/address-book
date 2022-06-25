@@ -1,10 +1,11 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import Button from '../components/button';
 import Card from '../components/card'
 import useContacts from '../utils/hooks/useContacts'
 import Input from '../components/input'
 import { Map, Marker } from "pigeon-maps"
 import axios from 'axios';
+import Select from '../components/select';
 
 const AddContact = ({setContacts})=>{
   const [editPosition, setEditPosition] = useState([33.8892846,35.4692628])
@@ -68,13 +69,61 @@ const AddContact = ({setContacts})=>{
 
 function Home() {
     const {contacts, setContacts} = useContacts();
+    const [filteredContacts, setFilteredContacts] = useState(contacts);
+    const [filterField, setFilterField] = useState('first_name')
+    const [filterType, setFilterType] = useState('includes')
+    const [filterValue, setFilterValue] = useState('')
+
+    const onFieldChange = (e)=>{
+      setFilterField(e.currentTarget.value)
+    }
    
+    const onTypeChange = (e)=>{
+      setFilterType(e.currentTarget.value)
+    }
+
+    const onValueChange = (e)=>{
+      setFilterValue(e.target.value)
+    }
+
+    useEffect(()=>{
+      setFilteredContacts(contacts);
+    }, [contacts]);
+
+    useEffect(()=>{
+        switch(filterType){
+          case 'includes':
+            setFilteredContacts(contacts?.filter(contact=>contact[filterField]?.toLowerCase()?.includes(filterValue.toLowerCase())));
+            break;
+          case 'start': 
+            setFilteredContacts(contacts?.filter(contact=>contact[filterField]?.toLowerCase()?.startsWith(filterValue.toLowerCase())));
+            break;
+          case 'end':
+            setFilteredContacts(contacts?.filter(contact=>contact[filterField]?.toLowerCase()?.endsWith(filterValue.toLowerCase())));
+            break;
+        }
+    },[filterField, filterType, filterValue, contacts])
   return (
     <div className='contacts-container'>
         <AddContact setContacts={setContacts}/>
-        {contacts?.map(contact=>{
+        <div className='filter-container'>
+          <Select label='Filter by' fullWidth input={{onChange: onFieldChange}}>
+            <option value="first_name">First name</option>
+            <option value="last_name">Last name</option>
+            <option value="phone">Phone</option>
+            <option value="email">Email</option>
+            <option value="relation">Relation</option>
+          </Select>
+          <Select label={null} fullWidth input={{onChange: onTypeChange}}>
+            <option value="includes">Includes</option>
+            <option value="start">Starts with</option>
+            <option value="end">Ends with</option>
+          </Select>
+          <Input label={null} input={{placeholder: "Search...", onChange: onValueChange, defaultValue: ""}} fullWidth/>
+        </div>
+        {filteredContacts?.length > 0 ? filteredContacts?.map(contact=>{
             return <Card key={contact._id} info={contact} setContacts={setContacts}/>
-        })}
+        }) : "No Contacts"}
     </div>
   )
 }
