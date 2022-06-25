@@ -8,7 +8,7 @@ router.get('/', getContacts);
 router.get('/user', getContactsWithUser);
 router.get('/:id', getContact);
 router.get('/user/:id', getContactWithUser);
-router.put('/:id', updateContact);
+router.put('/', updateContact);
 router.delete('/:id', deleteContact);
 
 

@@ -11,7 +11,7 @@ const addContact = async (req, res) =>{
             location} = req.body;
     
             const contact = await Contact.create({
-                user,
+                user: req.user.user_id,
                 first_name,
                 last_name,
                 email: email.toLowerCase(),
@@ -27,7 +27,7 @@ const addContact = async (req, res) =>{
 
 const getContacts = async (req, res) =>{
     try{
-        const contacts = await Contact.find();
+        const contacts = await Contact.find({user: req.user.user_id});
         return res.status(200).json({contacts});
     }catch(err){
         res.status(500).json({error: err})
@@ -65,15 +65,15 @@ const getContactWithUser = async (req, res) =>{
 
 const updateContact = async (req, res) => {
     try{
-        const {id} = req.params
-        const { first_name,
+        const { _id,
+            first_name,
             last_name,
             email,
             phone,
             relation,
             location } = req.body;
     
-            const contact = await Contact.findByIdAndUpdate(id, {
+            const contact = await Contact.findByIdAndUpdate(_id, {
                 first_name,
                 last_name,
                 email: email.toLowerCase(),

@@ -70,10 +70,7 @@ const login = async (req, res) => {
 
 
 const verify = (req, res)=>{
-    const token = req.body.token;
-    console.log("token: ", token)
-
-   
+    const token = req.body.token;   
 
     try {
         const valid = jwt.verify(token, process.env.TOKEN_KEY)
