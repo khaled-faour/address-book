@@ -27,7 +27,7 @@ const addContact = async (req, res) =>{
 
 const getContacts = async (req, res) =>{
     try{
-        const contacts = await Contact.find({user: req.user.user_id});
+        const contacts = await Contact.find({user: req.user.user_id}).sort({'first_name': 1});
         return res.status(200).json({contacts});
     }catch(err){
         res.status(500).json({error: err})
@@ -36,7 +36,7 @@ const getContacts = async (req, res) =>{
 
 const getContactsWithUser = async (req, res) =>{
     try{
-        const contacts = await Contact.find().populate('user');
+        const contacts = await Contact.find({user: req.user.user_id}).populate('user').sort({'first_name': 1});
         return res.status(200).json({contacts});
     }catch(err){
         res.status(500).json({error: err})
