@@ -19,10 +19,6 @@ function Login() {
             }
         })
     }
-
-    useEffect(()=>{
-        console.log(credentials)
-    }, [credentials])
   return (
     <div className="login-container">
         <h1>Login</h1>

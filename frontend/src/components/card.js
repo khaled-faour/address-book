@@ -55,9 +55,6 @@ function Card({info, setContacts}) {
             }
         }).catch(e=>console.log(e))
     }
-    useEffect(()=>{
-        console.log("Edited: ", editedValue)
-    }, [editedValue])
   return (
     <>
         {!edit && (

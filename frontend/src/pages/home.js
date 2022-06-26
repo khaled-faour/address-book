@@ -17,7 +17,6 @@ const AddContact = ({setContacts})=>{
   }
 
   const onChange = (e)=>{
-    console.log({[e.target.name]: e.target.value});
     setValues({...values, [e.target.name]: e.target.value});
   }
 
@@ -27,10 +26,8 @@ const AddContact = ({setContacts})=>{
   }
 
   const save = async()=>{
-    console.log(values)
     await axios.post('/api/contact', {...values}, {headers:{authorization: "Bearer " + localStorage.getItem("user_token")}})
     .then(response=>{
-      console.log(response)
       setContacts((contacts=>{
         return [...contacts, response.data.contact]
       }))
@@ -85,10 +82,6 @@ function Home() {
     const onValueChange = (e)=>{
       setFilterValue(e.target.value)
     }
-
-    useEffect(()=>{
-      setFilteredContacts(contacts);
-    }, [contacts]);
 
     useEffect(()=>{
         switch(filterType){

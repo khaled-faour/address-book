@@ -14,7 +14,6 @@ function useAuth() {
                 setValid(false);
             }
         }).catch(e=>{
-            console.log(e)
             setValid(false)
         })
     }
